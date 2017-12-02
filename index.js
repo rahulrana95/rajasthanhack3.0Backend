@@ -20,13 +20,25 @@ var connection = mysql.createPool({
   host     : 'testbot.c0ccjbvvdqns.us-east-2.rds.amazonaws.com',
   user     : 'maniax',
   password : '9068390682Rr',
-  database : 'testing',
+  database : 'rajasthanHackathon3',
   port     : 3306
 });
 app.use(cors());
 app.set('port',  process.env.PORT || 3000 );
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended : false }));
+
+var tryi = router.post('/try',function(req,res){
+
+  console.log(req.body);
+  res.json({
+    "status":400
+  });
+});
+
+app.use(tryi);
+app.use(require('./routes/login/login.js'));
+app.use(require('./routes/signup/signup.js'));
 
 /*
 var home = router.get('/complaint', function(req, res){
